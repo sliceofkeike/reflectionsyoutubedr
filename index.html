@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aesthetic Vlog Widget</title>
+    <style>
+        :root { 
+            --gray-text: #BABABA; 
+        }
+
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 15px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            background: transparent; 
+            user-select: none; 
+        }
+
+        #media-container {
+            position: relative; 
+            width: 100%; 
+            max-width: 500px; 
+            aspect-ratio: 16 / 9;
+            background: #111; 
+            border-radius: 12px; 
+            overflow: hidden;
+        }
+
+        #display-img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            position: absolute; 
+            top:0; 
+            left:0; 
+            z-index: 1; 
+        }
+
+        #time-badge {
+            position: absolute; 
+            bottom: 8px; 
+            right: 8px;
+            background: rgba(0, 0, 0, 0.8); 
+            color: white;
+            padding: 2px 6px; 
+            border-radius: 4px; 
+            font-size: 11px;
+            font-weight: bold; 
+            z-index: 10;
+        }
+
+        .info-section { 
+            width: 100%; 
+            max-width: 500px; 
+            margin-top: 12px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-start; 
+        }
+
+        .text-content { flex-grow: 1; }
+        
+        .title-display { 
+            font-size: 12pt; 
+            font-weight: bold; 
+            color: black; 
+            margin: 0; 
+            line-height: 1.2; 
+        }
+
+        .stats-display { 
+            font-size: 10pt; 
+            color: var(--gray-text); 
+            margin-top: 5px; 
+        }
+        
+        .three-dots { 
+            color: black; 
+            font-size: 20px; 
+            padding: 0 5px; 
+            font-weight: bold; 
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        /* ---------------------------------------------------
+           MANUAL CONFIG: Change these values here!
+           --------------------------------------------------- */
+        const CONFIG = {
+            title: "Reflections",
+            stats: "74M views • 7 Years ago",
+            thumb: "https://i.pinimg.com/1200x/52/b7/43/52b7438d0ba4941d9c2d157e6ee6108d.jpg",
+            length: "4:06",
+            zoom: 1.0  // 1.0 is normal, 1.2 is zoomed in, etc.
+        };
+        /* --------------------------------------------------- */
+    </script>
+
+    <div id="media-container">
+        <img id="display-img" src="">
+        <div id="time-badge"></div>
+    </div>
+
+    <div class="info-section">
+        <div class="text-content">
+            <p id="out-title" class="title-display"></p>
+            <p id="out-stats" class="stats-display"></p>
+        </div>
+        <div class="three-dots">⋮</div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            const img = document.getElementById('display-img');
+            
+            // Set Text from Config
+            document.getElementById('out-title').innerText = CONFIG.title;
+            document.getElementById('out-stats').innerText = CONFIG.stats;
+            document.getElementById('time-badge').innerText = CONFIG.length;
+            
+            // Set Image and Zoom from Config
+            img.src = CONFIG.thumb;
+            img.style.transform = `scale(${CONFIG.zoom})`;
+        };
+    </script>
+</body>
+</html>
